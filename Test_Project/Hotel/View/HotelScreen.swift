@@ -12,49 +12,40 @@ struct HotelScreen: View {
     
     @State var goToRoomsView = false
     
-    let rows = [
-        GridItem(.flexible(minimum: 0, maximum: 100)),
-        GridItem(.flexible(minimum: 0, maximum: 500))
-    ]
-    
     var body: some View {
-        NavigationView {
-            ZStack {
-                Color("Background")
+        ZStack {
+            Color("Background")
+                .edgesIgnoringSafeArea(.bottom)
+            
+            ScrollView(showsIndicators: false) {
+                MainInfoBlock()
                 
-                if let safeHotel = viewModel.hotel {
-                    ScrollView(showsIndicators: false) {
-                        MainInfoBlock(
-                            hotel: .constant(safeHotel)
-                        )
-                        
-                        DescriptionBlock(hotelInfo: .constant(safeHotel.about_the_hotel))
-                        
-                        NavigationLink(
-                            destination: RoomScreen(hotelName: .constant(safeHotel.name)),
-                            isActive: $goToRoomsView,
-                            label: {
-                                BlueButton(
-                                    title: "К выбору номера",
-                                    action: {
-                                        goToRoomsView = true
-                                        viewModel.getRooms()
-                                    }
-                                )
+                DescriptionBlock()
+                
+                NavigationLink(
+                    destination: RoomScreen(hotelName: .constant(viewModel.hotel?.name ?? "")),
+                    isActive: $goToRoomsView,
+                    label: {
+                        BlueButton(
+                            title: "К выбору номера",
+                            action: {
+                                goToRoomsView = true
+                                viewModel.getRooms()
                             }
                         )
-                        
+                        .padding(.bottom)
+                        .padding()
+                        .background(
+                            Color.white
+                                .ignoresSafeArea()
+                        )
                     }
-                } else {
-                    ProgressView()
-                }
+                )
             }
-            .onAppear {
-                viewModel.getHotels()
-            }
-            .navigationTitle("Отель")
-            .navigationBarTitleDisplayMode(.inline)
         }
+        .edgesIgnoringSafeArea(.bottom)
+        .navigationTitle("Отель")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

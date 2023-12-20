@@ -64,13 +64,16 @@ struct RoomBlock: View {
                             goToBooking = true
                         }
                     )
+                    .padding()
+                    .background(
+                        Color.white
+                            .ignoresSafeArea()
+                    )
                     .padding(-15)
                 }
             )
         }
-        .padding()
-        .background(Color.white)
-        .cornerRadius(12)
+        .blockBackground(alignment: .center)
     }
 }
 

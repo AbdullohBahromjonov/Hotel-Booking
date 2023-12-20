@@ -10,4 +10,5 @@ import Foundation
 class ViewModel: ObservableObject {
     @Published var hotel: Hotel? = nil
     @Published var rooms: Rooms? = nil
+    @Published var bookingDetails: BookingDetails? = nil
 }

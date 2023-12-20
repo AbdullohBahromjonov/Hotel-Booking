@@ -15,7 +15,7 @@ struct BlueButton: View {
         Button(
             action: action,
             label: {
-                Text("К выбору номера")
+                Text(title)
                     .foregroundColor(.white)
                     .font(.system(size: 16, weight: .medium))
             }
@@ -24,8 +24,6 @@ struct BlueButton: View {
         .padding()
         .background(Color.blue)
         .cornerRadius(15)
-        .padding()
-        .background(Color.white.ignoresSafeArea())
     }
 }
 

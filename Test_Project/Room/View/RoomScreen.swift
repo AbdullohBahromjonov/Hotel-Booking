@@ -29,9 +29,6 @@ struct RoomScreen: View {
                 ProgressView()
             }
         }
-        .onAppear {
-            viewModel.getRooms()
-        }
         .navigationTitle(hotelName)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
@@ -46,10 +43,15 @@ struct RoomScreen: View {
                 }
             )
         )
+        .onAppear {
+            viewModel.getRooms()
+        }
     }
 }
 
 #Preview {
-    RoomScreen(hotelName: .constant("Hotel"))
-        .environmentObject(ViewModel())
+    NavigationView {
+        RoomScreen(hotelName: .constant("Hotel"))
+            .environmentObject(ViewModel())
+    }
 }
