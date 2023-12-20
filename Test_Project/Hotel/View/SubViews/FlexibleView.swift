@@ -42,7 +42,6 @@ struct FlexibleView<Data: Collection, Content: View>: View where Data.Element: H
           if remainingWidth - elementSize.width >= 0 {
             rows[currentRow].append(element)
           } else {
-            // start a new row
             currentRow = currentRow + 1
             rows.append([element])
             remainingWidth = availableWidth
@@ -74,21 +73,4 @@ struct FlexibleView<Data: Collection, Content: View>: View where Data.Element: H
             .background(Color("Features color"))
             .cornerRadius(5)
     }
-}
-
-extension View {
-  func readSize(onChange: @escaping (CGSize) -> Void) -> some View {
-    background(
-      GeometryReader { geometryProxy in
-        Color.clear
-          .preference(key: SizePreferenceKey.self, value: geometryProxy.size)
-      }
-    )
-    .onPreferenceChange(SizePreferenceKey.self, perform: onChange)
-  }
-}
-
-private struct SizePreferenceKey: PreferenceKey {
-  static var defaultValue: CGSize = .zero
-  static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
 }

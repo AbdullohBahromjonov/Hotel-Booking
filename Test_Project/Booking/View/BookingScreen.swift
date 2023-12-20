@@ -17,10 +17,7 @@ struct BookingScreen: View {
     @State var touristsNumber = 1
     
     var body: some View {
-        ZStack {
-            Color("Background")
-                .edgesIgnoringSafeArea(.bottom)
-            
+        ScreenBackground(title: "Бронирование") {
             ScrollView(showsIndicators: false) {
                 HotelBlock()
                 
@@ -97,9 +94,6 @@ struct BookingScreen: View {
         .onTapGesture {
             isFocused = false
         }
-        .navigationTitle("Бронирование")
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
         .navigationBarItems(
             leading: Button(
                 action: {
@@ -119,23 +113,4 @@ struct BookingScreen: View {
         BookingScreen()
     }
     .environmentObject(ViewModel())
-}
-
-func format(with mask: String, phone: String) -> String {
-    let numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
-    var result = ""
-    var index = numbers.startIndex
-
-    for ch in mask where index < numbers.endIndex {
-        if ch == "X" {
-            result.append(numbers[index])
-
-            index = numbers.index(after: index)
-
-        } else {
-            result.append(ch)
-        }
-    }
-    
-    return result
 }

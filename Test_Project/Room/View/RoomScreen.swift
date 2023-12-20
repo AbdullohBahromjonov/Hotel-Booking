@@ -14,10 +14,7 @@ struct RoomScreen: View {
     @Binding var hotelName: String
     
     var body: some View {
-        ZStack {
-            Color("Background")
-                .edgesIgnoringSafeArea(.bottom)
-            
+        ScreenBackground(title: hotelName) {
             if let safeRooms = viewModel.rooms {
                 ScrollView(showsIndicators: false) {
                     ForEach(safeRooms.rooms) { room in
@@ -29,9 +26,6 @@ struct RoomScreen: View {
                 ProgressView()
             }
         }
-        .navigationTitle(hotelName)
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
         .navigationBarItems(
             leading: Button(
                 action: {

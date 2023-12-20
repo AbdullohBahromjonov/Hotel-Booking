@@ -44,21 +44,3 @@ struct HotelBlock: View {
     HotelBlock()
         .environmentObject(ViewModel())
 }
-
-extension View {
-    func blockBackground(alignment: Alignment) -> some View {
-        modifier(BlockBackground(alignment: alignment))
-    }
-}
-
-struct BlockBackground: ViewModifier {
-    let alignment: Alignment
-    
-    func body(content: Content) -> some View {
-        content
-            .frame(maxWidth: .infinity, alignment: alignment)
-            .padding()
-            .background(Color.white)
-            .cornerRadius(12)
-    }
-}

@@ -13,10 +13,7 @@ struct HotelScreen: View {
     @State var goToRoomsView = false
     
     var body: some View {
-        ZStack {
-            Color("Background")
-                .edgesIgnoringSafeArea(.bottom)
-            
+        ScreenBackground(title: "Отель") {
             ScrollView(showsIndicators: false) {
                 MainInfoBlock()
                 
@@ -44,12 +41,12 @@ struct HotelScreen: View {
             }
         }
         .edgesIgnoringSafeArea(.bottom)
-        .navigationTitle("Отель")
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
-    HotelScreen()
-        .environmentObject(ViewModel())
+    NavigationView {
+        HotelScreen()
+            .environmentObject(ViewModel())
+    }
 }

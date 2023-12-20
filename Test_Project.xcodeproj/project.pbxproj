@@ -18,6 +18,8 @@
 		E5A594002B335C3A00E0724C /* BookingInfoBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A593FF2B335C3A00E0724C /* BookingInfoBlock.swift */; };
 		E5A594022B335C7F00E0724C /* PriceBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A594012B335C7F00E0724C /* PriceBlock.swift */; };
 		E5A594052B3372D200E0724C /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A594042B3372D200E0724C /* RatingView.swift */; };
+		E5A5940B2B33762B00E0724C /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A5940A2B33762B00E0724C /* Extension.swift */; };
+		E5A5940D2B33771000E0724C /* ScreenBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A5940C2B33771000E0724C /* ScreenBackground.swift */; };
 		E5AC218B2B2DA09E008F4CFA /* MainInfoBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AC218A2B2DA09E008F4CFA /* MainInfoBlock.swift */; };
 		E5AC218D2B2DA0BC008F4CFA /* CustomList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AC218C2B2DA0BC008F4CFA /* CustomList.swift */; };
 		E5AC218F2B2DA0F6008F4CFA /* CustomListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AC218E2B2DA0F6008F4CFA /* CustomListItem.swift */; };
@@ -52,6 +54,8 @@
 		E5A593FF2B335C3A00E0724C /* BookingInfoBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingInfoBlock.swift; sourceTree = "<group>"; };
 		E5A594012B335C7F00E0724C /* PriceBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceBlock.swift; sourceTree = "<group>"; };
 		E5A594042B3372D200E0724C /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		E5A5940A2B33762B00E0724C /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		E5A5940C2B33771000E0724C /* ScreenBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenBackground.swift; sourceTree = "<group>"; };
 		E5AC218A2B2DA09E008F4CFA /* MainInfoBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoBlock.swift; sourceTree = "<group>"; };
 		E5AC218C2B2DA0BC008F4CFA /* CustomList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomList.swift; sourceTree = "<group>"; };
 		E5AC218E2B2DA0F6008F4CFA /* CustomListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListItem.swift; sourceTree = "<group>"; };
@@ -106,6 +110,7 @@
 				E503CC772B2CE91700BA8A2A /* ContentView.swift */,
 				E5A594032B33729500E0724C /* Shared Views */,
 				E5AC21982B2DFA33008F4CFA /* ViewModel.swift */,
+				E5A5940A2B33762B00E0724C /* Extension.swift */,
 				E5AC21882B2DA07D008F4CFA /* Hotel */,
 				E5AC219A2B2E2B7A008F4CFA /* Room */,
 				E5AC21AA2B2F6A3F008F4CFA /* Booking */,
@@ -156,6 +161,7 @@
 				E5A594042B3372D200E0724C /* RatingView.swift */,
 				E5AC219E2B2E2E7F008F4CFA /* BlueButton.swift */,
 				E5AC21A02B2E2FB1008F4CFA /* ImageCarouselView.swift */,
+				E5A5940C2B33771000E0724C /* ScreenBackground.swift */,
 			);
 			path = "Shared Views";
 			sourceTree = "<group>";
@@ -362,6 +368,7 @@
 				E5AC21962B2DF595008F4CFA /* DescriptionBlock.swift in Sources */,
 				E5AC21942B2DBDD2008F4CFA /* FlexibleView.swift in Sources */,
 				E5AC218F2B2DA0F6008F4CFA /* CustomListItem.swift in Sources */,
+				E5A5940D2B33771000E0724C /* ScreenBackground.swift in Sources */,
 				E5AC21A82B2F6971008F4CFA /* GetRooms.swift in Sources */,
 				E5C903EB2B31A95C001DF019 /* BuyerInfoBlock.swift in Sources */,
 				E5AC219C2B2E2BCE008F4CFA /* RoomScreen.swift in Sources */,
@@ -378,6 +385,7 @@
 				E5AC219F2B2E2E7F008F4CFA /* BlueButton.swift in Sources */,
 				E5A593FE2B335BEC00E0724C /* FloatingTextField.swift in Sources */,
 				E5AC21AC2B2F6A66008F4CFA /* BookingScreen.swift in Sources */,
+				E5A5940B2B33762B00E0724C /* Extension.swift in Sources */,
 				E5A594052B3372D200E0724C /* RatingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
