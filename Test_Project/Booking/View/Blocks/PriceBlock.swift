@@ -40,7 +40,7 @@ struct PriceBlock: View {
             }
         }
         .blockBackground(alignment: .center)
-        .padding(.bottom)
+        //.padding(.bottom)
         .onAppear {
             viewModel.getBookingDetails()
         }

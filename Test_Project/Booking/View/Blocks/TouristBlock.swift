@@ -10,10 +10,14 @@ import SwiftUI
 struct TouristBlock: View {
     let title: String
     
-    @State var name = ""
-    @State var surname = ""
-    @State var birthDate = ""
     @State var fold = false
+    
+    @Binding var name: String
+    @Binding var surname: String
+    @Binding var birthDate: String
+    @Binding var citizenship: String
+    @Binding var internationalPassportNumber: String
+    @Binding var internationalPassportExpiration: String
     
     var action: (() -> Void)? = nil
     
@@ -71,31 +75,31 @@ struct TouristBlock: View {
                 )
                 
                 FloatingTextField(
-                    text: $name,
+                    text: $surname,
                     placeholder: "Фамилия",
                     keyboard: .emailAddress
                 )
                 
                 FloatingTextField(
-                    text: $name,
+                    text: $birthDate,
                     placeholder: "Дата рождения",
                     keyboard: .emailAddress
                 )
                 
                 FloatingTextField(
-                    text: $name,
+                    text: $citizenship,
                     placeholder: "Гражданство",
                     keyboard: .emailAddress
                 )
                 
                 FloatingTextField(
-                    text: $name,
+                    text: $internationalPassportNumber,
                     placeholder: "Номер загранпаспорта",
                     keyboard: .emailAddress
                 )
                 
                 FloatingTextField(
-                    text: $name,
+                    text: $internationalPassportExpiration,
                     placeholder: "Срок действия загранпаспорта",
                     keyboard: .emailAddress
                 )
@@ -107,7 +111,12 @@ struct TouristBlock: View {
 
 #Preview {
     TouristBlock(
-        title: "Первый турист",
-        action: nil
+        title: "Пер вый турист",
+        name: .constant(""),
+        surname: .constant(""),
+        birthDate: .constant(""),
+        citizenship: .constant(""),
+        internationalPassportNumber: .constant(""),
+        internationalPassportExpiration: .constant("")
     )
 }

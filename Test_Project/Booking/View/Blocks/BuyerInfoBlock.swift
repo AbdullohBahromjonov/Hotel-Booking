@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct BuyerInfoBlock: View {
-    @State var phoneNumber = ""
-    @State var email = ""
+    @Binding var phoneNumber: String
+    @Binding var email: String
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -40,5 +40,8 @@ struct BuyerInfoBlock: View {
 }
 
 #Preview {
-    BuyerInfoBlock()
+    BuyerInfoBlock(
+        phoneNumber: .constant(""),
+        email: .constant("")
+    )
 }

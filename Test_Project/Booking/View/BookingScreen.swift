@@ -13,8 +13,17 @@ struct BookingScreen: View {
     
     @FocusState var isFocused: Bool
     
-    @State var congretulation = false
+    @State var success = false
     @State var touristsNumber = 1
+    
+    @State var phoneNumber = ""
+    @State var email = ""
+    @State var name = ""
+    @State var surname = ""
+    @State var birthDate = ""
+    @State var citizenship = ""
+    @State var internationalPassportNumber = ""
+    @State var internationalPassportExpiration = ""
     
     var body: some View {
         ScreenBackground(title: "Бронирование") {
@@ -23,13 +32,22 @@ struct BookingScreen: View {
                 
                 BookingInfoBlock()
                 
-                BuyerInfoBlock()
-                    .focused($isFocused)
+                BuyerInfoBlock(
+                    phoneNumber: $phoneNumber,
+                    email: $email
+                )
+                .focused($isFocused)
                 
                 ForEach(1...touristsNumber, id: \.self) { i in
                     TouristBlock(
                         title: "\(i) турист",
                         fold: i == 1 ? false : true,
+                        name: $name,
+                        surname: $surname,
+                        birthDate: $birthDate,
+                        citizenship: $citizenship,
+                        internationalPassportNumber: $internationalPassportNumber,
+                        internationalPassportExpiration: $internationalPassportExpiration,
                         action: i > 1 ? {
                             withAnimation {
                                 touristsNumber -= 1
@@ -71,13 +89,15 @@ struct BookingScreen: View {
                 PriceBlock()
                 
                 NavigationLink(
-                    destination: Text("Congrets"),
-                    isActive: $congretulation,
+                    destination: SuccessScreen(),
+                    isActive: $success,
                     label: {
                         BlueButton(
                             title: "Оплатить 198 036 ₽",
                             action: {
-                                congretulation.toggle()
+                                if !phoneNumber.isEmpty && !email.isEmpty && !name.isEmpty && !surname.isEmpty && !birthDate.isEmpty && !citizenship.isEmpty && !internationalPassportNumber.isEmpty && !internationalPassportExpiration.isEmpty {
+                                    success.toggle()
+                                }
                             }
                         )
                         .padding(.bottom)

@@ -17,7 +17,7 @@ struct Test_ProjectApp: App {
     
     var body: some Scene {
         WindowGroup {
-            HotelScreen()
+            ContentView()
                 .environmentObject(viewModel)
         }
     }
