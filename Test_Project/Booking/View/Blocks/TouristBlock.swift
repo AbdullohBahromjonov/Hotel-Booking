@@ -25,7 +25,7 @@ struct TouristBlock: View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
                 Text(title)
-                    .font(.system(size: 22, weight: .medium))
+                    .title()
                     .padding(.bottom, fold ? 0 : 5)
                 
                 Spacer()
@@ -83,7 +83,9 @@ struct TouristBlock: View {
                 FloatingTextField(
                     text: $birthDate,
                     placeholder: "Дата рождения",
-                    keyboard: .emailAddress
+                    keyboard: .emailAddress,
+                    isFormated: true,
+                    textFormat: "XX.XX.XXXX"
                 )
                 
                 FloatingTextField(

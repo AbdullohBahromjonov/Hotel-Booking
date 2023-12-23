@@ -8,18 +8,22 @@
 import SwiftUI
 
 extension View {
-  func readSize(onChange: @escaping (CGSize) -> Void) -> some View {
-    background(
-      GeometryReader { geometryProxy in
-        Color.clear
-          .preference(key: SizePreferenceKey.self, value: geometryProxy.size)
-      }
-    )
-    .onPreferenceChange(SizePreferenceKey.self, perform: onChange)
-  }
+    func readSize(onChange: @escaping (CGSize) -> Void) -> some View {
+        background(
+            GeometryReader { geometryProxy in
+                Color.clear
+                    .preference(key: SizePreferenceKey.self, value: geometryProxy.size)
+            }
+        )
+        .onPreferenceChange(SizePreferenceKey.self, perform: onChange)
+    }
     
     func blockBackground(alignment: Alignment) -> some View {
         modifier(BlockBackground(alignment: alignment))
+    }
+    
+    func title() -> some View {
+        modifier(TitleText())
     }
 }
 
@@ -37,5 +41,12 @@ private struct BlockBackground: ViewModifier {
             .padding()
             .background(Color.white)
             .cornerRadius(12)
+    }
+}
+
+private struct TitleText: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.system(size: 22, weight: .medium))
     }
 }

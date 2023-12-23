@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct BookingScreen: View {
-    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var viewModel: ViewModel
+    @Environment(\.dismiss) var dismiss
     
     @FocusState var isFocused: Bool
     
@@ -25,91 +25,69 @@ struct BookingScreen: View {
     @State var internationalPassportNumber = ""
     @State var internationalPassportExpiration = ""
     
+    @Binding var isActive: Bool
+    
     var body: some View {
         ScreenBackground(title: "Бронирование") {
-            ScrollView(showsIndicators: false) {
-                HotelBlock()
-                
-                BookingInfoBlock()
-                
-                BuyerInfoBlock(
-                    phoneNumber: $phoneNumber,
-                    email: $email
-                )
-                .focused($isFocused)
-                
-                ForEach(1...touristsNumber, id: \.self) { i in
-                    TouristBlock(
-                        title: "\(i) турист",
-                        fold: i == 1 ? false : true,
-                        name: $name,
-                        surname: $surname,
-                        birthDate: $birthDate,
-                        citizenship: $citizenship,
-                        internationalPassportNumber: $internationalPassportNumber,
-                        internationalPassportExpiration: $internationalPassportExpiration,
-                        action: i > 1 ? {
-                            withAnimation {
-                                touristsNumber -= 1
-                            }
-                        } : nil
+            if let bookingDetails = viewModel.bookingDetails {
+                ScrollView(showsIndicators: false) {
+                    HotelBlock()
+                    
+                    BookingInfoBlock()
+                    
+                    BuyerInfoBlock(
+                        phoneNumber: $phoneNumber,
+                        email: $email
                     )
-                }
-                
-                HStack {
-                    Text("Добавить туриста")
-                        .font(.system(size: 22, weight: .medium))
+                    .focused($isFocused)
                     
-                    Spacer()
+                    ForEach(1...touristsNumber, id: \.self) { i in
+                        TouristBlock(
+                            title: "\(i) турист",
+                            fold: i == 1 ? false : true,
+                            name: $name,
+                            surname: $surname,
+                            birthDate: $birthDate,
+                            citizenship: $citizenship,
+                            internationalPassportNumber: $internationalPassportNumber,
+                            internationalPassportExpiration: $internationalPassportExpiration,
+                            action: i > 1 ? {
+                                withAnimation {
+                                    touristsNumber -= 1
+                                }
+                            } : nil
+                        )
+                    }
+                    .focused($isFocused)
                     
-                    Button(
-                        action: {
-                            withAnimation {
-                                touristsNumber += 1
-                            }
-                        },
+                    AddTouristBlock(touristsNumber: $touristsNumber)
+                    
+                    PriceBlock()
+                    
+                    NavigationLink(
+                        destination: SuccessScreen(isActive: $isActive),
+                        isActive: $success,
                         label: {
-                            Image(systemName: "plus")
-                                .fontWeight(.medium)
-                                .foregroundColor(.white)
-                                .frame(width: 32, height: 32)
-                                .foregroundColor(.black)
-                                .background(
-                                    Color.blue
-                                )
-                                .cornerRadius(6)
+                            BlueButton(
+                                title: "Оплатить \(bookingDetails.tour_price + bookingDetails.fuel_charge + bookingDetails.service_charge) ₽",
+                                action: {
+                                    if !phoneNumber.isEmpty && !email.isEmpty && !name.isEmpty && !surname.isEmpty && !birthDate.isEmpty && !citizenship.isEmpty && !internationalPassportNumber.isEmpty && !internationalPassportExpiration.isEmpty {
+                                        success = true
+                                    }
+                                }
+                            )
+                            .padding(.bottom)
+                            .background(
+                                Color.white
+                                    .ignoresSafeArea()
+                            )
                         }
                     )
                 }
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color.white)
-                .cornerRadius(12)
-                
-                PriceBlock()
-                
-                NavigationLink(
-                    destination: SuccessScreen(),
-                    isActive: $success,
-                    label: {
-                        BlueButton(
-                            title: "Оплатить 198 036 ₽",
-                            action: {
-                                if !phoneNumber.isEmpty && !email.isEmpty && !name.isEmpty && !surname.isEmpty && !birthDate.isEmpty && !citizenship.isEmpty && !internationalPassportNumber.isEmpty && !internationalPassportExpiration.isEmpty {
-                                    success.toggle()
-                                }
-                            }
-                        )
-                        .padding(.bottom)
-                        .padding()
-                        .background(
-                            Color.white
-                                .ignoresSafeArea()
-                        )
-                    }
-                )
+                .edgesIgnoringSafeArea(.bottom)
+            } else {
+                ProgressView()
             }
-            .edgesIgnoringSafeArea(.bottom)
         }
         .onTapGesture {
             isFocused = false
@@ -125,12 +103,15 @@ struct BookingScreen: View {
                 }
             )
         )
+        .onAppear {
+            viewModel.getBookingDetails()
+        }
     }
 }
 
 #Preview {
     NavigationView {
-        BookingScreen()
+        BookingScreen(isActive: .constant(true))
     }
     .environmentObject(ViewModel())
 }

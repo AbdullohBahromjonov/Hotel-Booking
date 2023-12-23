@@ -14,14 +14,15 @@ struct BuyerInfoBlock: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Информация о покупателе")
-                .font(.system(size: 22, weight: .medium))
+                .title()
                 .padding(.bottom, 5)
             
             FloatingTextField(
                 text: $phoneNumber,
                 placeholder: "Номер телефона",
                 keyboard: .numberPad,
-                phoneNumber: true
+                isFormated: true,
+                textFormat: "+X (XXX) XXX-XX-XX"
             )
             
             FloatingTextField(

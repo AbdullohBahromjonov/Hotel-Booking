@@ -24,6 +24,7 @@ struct BlueButton: View {
         .padding()
         .background(Color.blue)
         .cornerRadius(15)
+        .padding()
     }
 }
 

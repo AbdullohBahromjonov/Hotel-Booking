@@ -10,6 +10,8 @@ import SwiftUI
 struct SuccessScreen: View {
     @Environment(\.dismiss) var dismiss
     
+    @Binding var isActive: Bool
+    
     var body: some View {
         VStack(spacing: 20) {
             Spacer()
@@ -29,17 +31,18 @@ struct SuccessScreen: View {
                 .multilineTextAlignment(.center)
                 .font(.system(size: 16))
                 .foregroundColor(.gray)
+                .padding(.horizontal)
             
             Spacer()
             
             BlueButton(
                 title: "Супер!",
                 action: {
-                    
+                    isActive = false
                 }
             )
+            .edgesIgnoringSafeArea(.bottom)
         }
-        .padding()
         .navigationTitle("Заказ оплачен")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
@@ -59,6 +62,6 @@ struct SuccessScreen: View {
 
 #Preview {
     NavigationView {
-        SuccessScreen()
+        SuccessScreen(isActive: .constant(true))
     }
 }

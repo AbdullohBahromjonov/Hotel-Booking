@@ -21,7 +21,7 @@ struct HotelBlock: View {
                 )
                 
                 Text(safeDetails.hotel_name)
-                    .font(.system(size: 22, weight: .medium))
+                    .title()
                     .padding(.bottom, 1)
                 
                 Text(safeDetails.hotel_adress)
@@ -34,9 +34,6 @@ struct HotelBlock: View {
         }
         .blockBackground(alignment: .leading)
         .padding(.top)
-        .onAppear {
-            viewModel.getBookingDetails()
-        }
     }
 }
 

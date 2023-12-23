@@ -52,9 +52,6 @@ struct BookingInfoBlock: View {
             }
         }
         .blockBackground(alignment: .center)
-        .onAppear {
-            viewModel.getBookingDetails()
-        }
     }
 }
 

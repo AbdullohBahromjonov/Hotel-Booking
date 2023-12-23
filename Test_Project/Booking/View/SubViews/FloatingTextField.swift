@@ -11,7 +11,8 @@ struct FloatingTextField: View {
     @Binding var text: String
     let placeholder: String
     var keyboard: UIKeyboardType = .default
-    var phoneNumber = false
+    var isFormated = false
+    var textFormat = ""
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -28,8 +29,8 @@ struct FloatingTextField: View {
             .offset(y: !text.isEmpty ? 0 : -10)
             .font(.system(size: 16))
             .onChange(of: text) { oldValue in
-                if phoneNumber {
-                    text = format(with: "+X (XXX) XXX-XX-XX", phone: oldValue)
+                if isFormated {
+                    text = Test_Project.format(with: textFormat, phone: oldValue)
                 }
             }
         }

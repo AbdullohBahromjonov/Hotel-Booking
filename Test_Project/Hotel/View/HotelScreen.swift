@@ -14,33 +14,39 @@ struct HotelScreen: View {
     
     var body: some View {
         ScreenBackground(title: "Отель") {
-            ScrollView(showsIndicators: false) {
-                MainInfoBlock()
-                
-                DescriptionBlock()
-                
-                NavigationLink(
-                    destination: RoomScreen(hotelName: .constant(viewModel.hotel?.name ?? "")),
-                    isActive: $goToRoomsView,
-                    label: {
-                        BlueButton(
-                            title: "К выбору номера",
-                            action: {
-                                goToRoomsView = true
-                                viewModel.getRooms()
-                            }
-                        )
-                        .padding(.bottom)
-                        .padding()
-                        .background(
-                            Color.white
-                                .ignoresSafeArea()
-                        )
-                    }
-                )
+            if let hotel = viewModel.hotel {
+                ScrollView(showsIndicators: false) {
+                    MainInfoBlock(hotel: .constant(hotel))
+                    
+                    DescriptionBlock(info: .constant(hotel.about_the_hotel))
+                    
+                    NavigationLink(
+                        destination: RoomScreen(hotelName: .constant(viewModel.hotel?.name ?? ""), isActive: $goToRoomsView),
+                        isActive: $goToRoomsView,
+                        label: {
+                            BlueButton(
+                                title: "К выбору номера",
+                                action: {
+                                    goToRoomsView = true
+                                    viewModel.getRooms()
+                                }
+                            )
+                            .padding(.bottom)
+                            .background(
+                                Color.white
+                                    .ignoresSafeArea()
+                            )
+                        }
+                    )
+                }
+            } else {
+                ProgressView()
             }
         }
         .edgesIgnoringSafeArea(.bottom)
+        .onAppear {
+            viewModel.getHotels()
+        }
     }
 }
 

@@ -11,13 +11,14 @@ struct RoomBlock: View {
     @State var goToBooking = false
     
     @Binding var room: Room
+    @Binding var isActive: Bool
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             ImageCarouselView(urls: room.image_urls)
             
             Text(room.name)
-                .font(.system(size: 22, weight: .medium))
+                .title()
             
             FlexibleView(
                 data: room.peculiarities,
@@ -55,7 +56,7 @@ struct RoomBlock: View {
             .padding(.top, 10)
             
             NavigationLink(
-                destination: BookingScreen(),
+                destination: BookingScreen(isActive: $isActive),
                 isActive: $goToBooking,
                 label: {
                     BlueButton(
@@ -64,7 +65,6 @@ struct RoomBlock: View {
                             goToBooking = true
                         }
                     )
-                    .padding()
                     .background(
                         Color.white
                             .ignoresSafeArea()
@@ -83,8 +83,8 @@ struct RoomBlock: View {
         Color("Background")
             .ignoresSafeArea()
         
-        RoomBlock(room:
-            .constant(
+        RoomBlock(
+            room: .constant(
                 Room(
                     id: 1,
                     name: "Hotel",
@@ -100,7 +100,8 @@ struct RoomBlock: View {
                         "https://deluxe.voyage/useruploads/articles/article_1eb0a64d00.jpg"
                     ]
                 )
-            )
+            ),
+            isActive: .constant(true)
         )
     }
 }

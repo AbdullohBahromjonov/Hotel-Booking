@@ -12,13 +12,14 @@ struct RoomScreen: View {
     @Environment(\.dismiss) var dismiss
     
     @Binding var hotelName: String
+    @Binding var isActive: Bool
     
     var body: some View {
         ScreenBackground(title: hotelName) {
             if let safeRooms = viewModel.rooms {
                 ScrollView(showsIndicators: false) {
                     ForEach(safeRooms.rooms) { room in
-                        RoomBlock(room: .constant(room))
+                        RoomBlock(room: .constant(room), isActive: $isActive)
                     }
                     .padding(.vertical)
                 }
@@ -45,7 +46,8 @@ struct RoomScreen: View {
 
 #Preview {
     NavigationView {
-        RoomScreen(hotelName: .constant("Hotel"))
+        RoomScreen(hotelName: .constant("Hotel"), 
+                   isActive: .constant(true))
             .environmentObject(ViewModel())
     }
 }
