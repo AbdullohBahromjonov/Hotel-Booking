@@ -36,7 +36,7 @@ struct CustomList: View {
         }
         .padding(.trailing)
         .padding(10)
-        .background(Color("Features color"))
+        .background(Color.peculiarities)
         .cornerRadius(15)
         .padding(.top, 10)
     }

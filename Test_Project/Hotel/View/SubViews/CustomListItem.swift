@@ -21,7 +21,7 @@ struct CustomListItem: View {
                 Text(title)
                     .font(.system(size: 16, weight: .medium))
                 Text(description)
-                    .foregroundColor(Color("Text secondary"))
+                    .foregroundColor(Color.textSecondary)
                     .font(.system(size: 14, weight: .medium))
             }
             

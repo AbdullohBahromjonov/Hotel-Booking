@@ -21,7 +21,7 @@ struct SuccessScreen: View {
                 .padding(25)
                 .background(
                     Circle()
-                        .foregroundColor(Color("Background"))
+                        .foregroundColor(Color.background)
                 )
             
             Text("Ваш заказ принят в работу")

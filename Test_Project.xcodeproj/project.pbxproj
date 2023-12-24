@@ -118,7 +118,7 @@
 				E5AC21882B2DA07D008F4CFA /* Hotel */,
 				E5AC219A2B2E2B7A008F4CFA /* Room */,
 				E5AC21AA2B2F6A3F008F4CFA /* Booking */,
-				E5C1532B2B33F32E0056194C /* SuccessScreen.swift */,
+				E5606B2B2B377B450001DDFD /* Success */,
 				E503CC752B2CE91700BA8A2A /* Test_ProjectApp.swift */,
 				E503CC792B2CE91800BA8A2A /* Assets.xcassets */,
 				E503CC7B2B2CE91800BA8A2A /* Preview Content */,
@@ -132,6 +132,14 @@
 				E503CC7C2B2CE91800BA8A2A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E5606B2B2B377B450001DDFD /* Success */ = {
+			isa = PBXGroup;
+			children = (
+				E5C1532B2B33F32E0056194C /* SuccessScreen.swift */,
+			);
+			path = Success;
 			sourceTree = "<group>";
 		};
 		E5A593F62B33546500E0724C /* View */ = {

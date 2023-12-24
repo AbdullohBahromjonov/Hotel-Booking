@@ -14,7 +14,7 @@ struct ScreenBackground<Content: View>: View {
     
     var body: some View {
         ZStack {
-            Color("Background")
+            Color.background
                 .edgesIgnoringSafeArea(.bottom)
             
             content

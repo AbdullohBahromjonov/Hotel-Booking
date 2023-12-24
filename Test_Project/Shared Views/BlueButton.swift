@@ -18,13 +18,13 @@ struct BlueButton: View {
                 Text(title)
                     .foregroundColor(.white)
                     .font(.system(size: 16, weight: .medium))
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.blue)
+                    .cornerRadius(15)
+                    .padding()
             }
         )
-        .frame(maxWidth: .infinity)
-        .padding()
-        .background(Color.blue)
-        .cornerRadius(15)
-        .padding()
     }
 }
 

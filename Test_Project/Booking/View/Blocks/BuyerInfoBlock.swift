@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct BuyerInfoBlock: View {
-    @Binding var phoneNumber: String
-    @Binding var email: String
+    @State var phoneNumber = ""
+    @State var email = ""
+    
+    @Binding var filled: Bool
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -24,12 +26,26 @@ struct BuyerInfoBlock: View {
                 isFormated: true,
                 textFormat: "+X (XXX) XXX-XX-XX"
             )
+            .onChange(of: phoneNumber) {
+                if !phoneNumber.isEmpty && phoneNumber.count == 11 && !email.isEmpty && email.contains("@") && email.contains("mail") && email.contains(".com") {
+                    filled = true
+                } else {
+                    filled = false
+                }
+            }
             
             FloatingTextField(
                 text: $email,
                 placeholder: "Почта",
                 keyboard: .emailAddress
             )
+            .onChange(of: email) {
+                if !phoneNumber.isEmpty && !email.isEmpty {
+                    filled = true
+                } else {
+                    filled = false
+                }
+            }
             
             Text("Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту")
                 .foregroundColor(.gray)
@@ -42,7 +58,6 @@ struct BuyerInfoBlock: View {
 
 #Preview {
     BuyerInfoBlock(
-        phoneNumber: .constant(""),
-        email: .constant("")
+        filled: .constant(false)
     )
 }

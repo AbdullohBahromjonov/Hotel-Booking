@@ -32,7 +32,7 @@ struct MainInfoBlock: View {
                     .font(.system(size: 30, weight: .semibold))
                 
                 Text(hotel.price_for_it)
-                    .foregroundColor(Color("Text secondary"))
+                    .foregroundColor(Color.textSecondary)
                     .font(.system(size: 16, weight: .regular))
                     .offset(y: -3)
             }

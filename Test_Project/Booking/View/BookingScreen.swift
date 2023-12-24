@@ -16,14 +16,8 @@ struct BookingScreen: View {
     @State var success = false
     @State var touristsNumber = 1
     
-    @State var phoneNumber = ""
-    @State var email = ""
-    @State var name = ""
-    @State var surname = ""
-    @State var birthDate = ""
-    @State var citizenship = ""
-    @State var internationalPassportNumber = ""
-    @State var internationalPassportExpiration = ""
+    @State var buyerFilled = false
+    @State var touristFilled = false
     
     @Binding var isActive: Bool
     
@@ -35,22 +29,14 @@ struct BookingScreen: View {
                     
                     BookingInfoBlock()
                     
-                    BuyerInfoBlock(
-                        phoneNumber: $phoneNumber,
-                        email: $email
-                    )
-                    .focused($isFocused)
+                    BuyerInfoBlock(filled: $buyerFilled)
+                        .focused($isFocused)
                     
                     ForEach(1...touristsNumber, id: \.self) { i in
                         TouristBlock(
                             title: "\(i) турист",
                             fold: i == 1 ? false : true,
-                            name: $name,
-                            surname: $surname,
-                            birthDate: $birthDate,
-                            citizenship: $citizenship,
-                            internationalPassportNumber: $internationalPassportNumber,
-                            internationalPassportExpiration: $internationalPassportExpiration,
+                            filled: $touristFilled,
                             action: i > 1 ? {
                                 withAnimation {
                                     touristsNumber -= 1
@@ -71,7 +57,7 @@ struct BookingScreen: View {
                             BlueButton(
                                 title: "Оплатить \(bookingDetails.tour_price + bookingDetails.fuel_charge + bookingDetails.service_charge) ₽",
                                 action: {
-                                    if !phoneNumber.isEmpty && !email.isEmpty && !name.isEmpty && !surname.isEmpty && !birthDate.isEmpty && !citizenship.isEmpty && !internationalPassportNumber.isEmpty && !internationalPassportExpiration.isEmpty {
+                                    if touristFilled == true && buyerFilled == true {
                                         success = true
                                     }
                                 }
@@ -85,12 +71,12 @@ struct BookingScreen: View {
                     )
                 }
                 .edgesIgnoringSafeArea(.bottom)
+                .onTapGesture {
+                    isFocused = false
+                }
             } else {
                 ProgressView()
             }
-        }
-        .onTapGesture {
-            isFocused = false
         }
         .navigationBarItems(
             leading: Button(
@@ -107,6 +93,7 @@ struct BookingScreen: View {
             viewModel.getBookingDetails()
         }
     }
+    
 }
 
 #Preview {

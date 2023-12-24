@@ -37,7 +37,7 @@ struct FloatingTextField: View {
         .animation(.easeIn, value: text.isEmpty)
         .frame(height: 52)
         .padding(.horizontal, 15)
-        .background(Color("Background"))
+        .background(Color.background)
         .cornerRadius(10)
     }
 }

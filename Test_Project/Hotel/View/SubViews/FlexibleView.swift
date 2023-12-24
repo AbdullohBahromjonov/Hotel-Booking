@@ -67,10 +67,10 @@ struct FlexibleView<Data: Collection, Content: View>: View where Data.Element: H
         alignment: .leading
     ) { item in
         Text(item)
-            .foregroundColor(Color("Text secondary"))
+            .foregroundColor(Color.textSecondary)
             .font(.system(size: 16))
             .padding(5)
-            .background(Color("Features color"))
+            .background(Color.peculiarities)
             .cornerRadius(5)
     }
 }

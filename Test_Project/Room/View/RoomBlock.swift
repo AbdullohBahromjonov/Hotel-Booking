@@ -26,10 +26,10 @@ struct RoomBlock: View {
                 alignment: .leading
             ) { item in
                 Text(item)
-                    .foregroundColor(Color("Text secondary"))
+                    .foregroundColor(Color.textSecondary)
                     .font(.system(size: 16))
                     .padding(5)
-                    .background(Color("Features color"))
+                    .background(Color.peculiarities)
                     .cornerRadius(5)
             }
             
@@ -49,7 +49,7 @@ struct RoomBlock: View {
                     .font(.system(size: 30, weight: .semibold))
                 
                 Text(room.price_per)
-                    .foregroundColor(Color("Text secondary"))
+                    .foregroundColor(Color.textSecondary)
                     .font(.system(size: 16, weight: .regular))
                     .offset(y: -3)
             }
@@ -80,7 +80,7 @@ struct RoomBlock: View {
 
 #Preview {
     ZStack {
-        Color("Background")
+        Color.background
             .ignoresSafeArea()
         
         RoomBlock(

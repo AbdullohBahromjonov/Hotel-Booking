@@ -12,12 +12,14 @@ struct TouristBlock: View {
     
     @State var fold = false
     
-    @Binding var name: String
-    @Binding var surname: String
-    @Binding var birthDate: String
-    @Binding var citizenship: String
-    @Binding var internationalPassportNumber: String
-    @Binding var internationalPassportExpiration: String
+    @State var name = ""
+    @State var surname = ""
+    @State var birthDate = ""
+    @State var citizenship = ""
+    @State var internationalPassportNumber = ""
+    @State var internationalPassportExpiration = ""
+    
+    @Binding var filled: Bool
     
     var action: (() -> Void)? = nil
     
@@ -44,8 +46,7 @@ struct TouristBlock: View {
                                 )
                                 .cornerRadius(6)
                         }
-                    )
-                }
+                    )                }
                 
                 Button(
                     action: {
@@ -73,38 +74,80 @@ struct TouristBlock: View {
                     placeholder: "Имя",
                     keyboard: .emailAddress
                 )
+                .onChange(of: name) {
+                    if !name.isEmpty && !surname.isEmpty && !birthDate.isEmpty && !citizenship.isEmpty && !internationalPassportNumber.isEmpty && !internationalPassportExpiration.isEmpty {
+                        filled = true
+                    } else {
+                        filled = false
+                    }
+                }
                 
                 FloatingTextField(
                     text: $surname,
                     placeholder: "Фамилия",
                     keyboard: .emailAddress
                 )
+                .onChange(of: surname) {
+                    if !name.isEmpty && !surname.isEmpty && !birthDate.isEmpty && !citizenship.isEmpty && !internationalPassportNumber.isEmpty && !internationalPassportExpiration.isEmpty {
+                        filled = true
+                    } else {
+                        filled = false
+                    }
+                }
                 
                 FloatingTextField(
                     text: $birthDate,
                     placeholder: "Дата рождения",
-                    keyboard: .emailAddress,
+                    keyboard: .numberPad,
                     isFormated: true,
                     textFormat: "XX.XX.XXXX"
                 )
+                .onChange(of: birthDate) {
+                    if !name.isEmpty && !surname.isEmpty && !birthDate.isEmpty && !citizenship.isEmpty && !internationalPassportNumber.isEmpty && !internationalPassportExpiration.isEmpty {
+                        filled = true
+                    } else {
+                        filled = false
+                    }
+                }
                 
                 FloatingTextField(
                     text: $citizenship,
                     placeholder: "Гражданство",
                     keyboard: .emailAddress
                 )
+                .onChange(of: citizenship) {
+                    if !name.isEmpty && !surname.isEmpty && !birthDate.isEmpty && !citizenship.isEmpty && !internationalPassportNumber.isEmpty && !internationalPassportExpiration.isEmpty {
+                        filled = true
+                    } else {
+                        filled = false
+                    }
+                }
                 
                 FloatingTextField(
                     text: $internationalPassportNumber,
                     placeholder: "Номер загранпаспорта",
                     keyboard: .emailAddress
                 )
+                .onChange(of: internationalPassportNumber) {
+                    if !name.isEmpty && !surname.isEmpty && !birthDate.isEmpty && !citizenship.isEmpty && !internationalPassportNumber.isEmpty && !internationalPassportExpiration.isEmpty {
+                        filled = true
+                    } else {
+                        filled = false
+                    }
+                }
                 
                 FloatingTextField(
                     text: $internationalPassportExpiration,
                     placeholder: "Срок действия загранпаспорта",
                     keyboard: .emailAddress
                 )
+                .onChange(of: internationalPassportExpiration) {
+                    if !name.isEmpty && !surname.isEmpty && !birthDate.isEmpty && !citizenship.isEmpty && !internationalPassportNumber.isEmpty && !internationalPassportExpiration.isEmpty {
+                        filled = true
+                    } else {
+                        filled = false
+                    }
+                }
             }
         }
         .blockBackground(alignment: .center)
@@ -112,13 +155,5 @@ struct TouristBlock: View {
 }
 
 #Preview {
-    TouristBlock(
-        title: "Пер вый турист",
-        name: .constant(""),
-        surname: .constant(""),
-        birthDate: .constant(""),
-        citizenship: .constant(""),
-        internationalPassportNumber: .constant(""),
-        internationalPassportExpiration: .constant("")
-    )
+    TouristBlock(title: "", filled: .constant(false))
 }

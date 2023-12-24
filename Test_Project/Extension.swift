@@ -27,6 +27,16 @@ extension View {
     }
 }
 
+extension Color {
+    static let theme = ColorTheme()
+}
+
+struct ColorTheme {
+    let background = Color("Background")
+    let peculiarities = Color("Peculiarities color")
+    let textSecondary = Color("Text secondary")
+}
+
 private struct SizePreferenceKey: PreferenceKey {
   static var defaultValue: CGSize = .zero
   static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
